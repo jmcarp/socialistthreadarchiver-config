@@ -1,0 +1,9 @@
+# Twitter data
+twint/
+
+# Script-generated files
+data/
+content/posts/
+
+# Hugo generated files
+public/

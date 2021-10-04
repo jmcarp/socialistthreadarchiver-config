@@ -1,0 +1,64 @@
+{{ define "main" }}
+  <div class="page-title">{{ .Params.title }}, {{ .Params.date.Format "January 2, 2006" }}</div>
+
+  <div class="tags">
+    <div>
+      Meeting:
+      {{ range (.GetTerms "meetings") }}
+        <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+      {{ end }}
+    </div>
+    <div>
+      Group(s):
+      {{ range (.GetTerms "groups") }}
+        <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="links">
+    {{ if .Params.agenda }}
+      <a href="{{ .Params.agenda }}" target="_blank">
+        <i class="fa fa-file-alt"></i>
+        Agenda
+      </a>
+    {{ end }}
+    {{ if .Params.packet }}
+      <a href="{{ .Params.packet }}" target="_blank">
+        <i class="fa fa-file-alt"></i>
+        Packet
+      </a>
+    {{ end }}
+    {{ if .Params.minutes }}
+      <a href="{{ .Params.minutes }}" target="_blank">
+        <i class="fa fa-file-alt"></i>
+        Minutes
+      </a>
+    {{ end }}
+    {{ if .Params.recording }}
+      <a href="{{ .Params.recording }}" target="_blank">
+        <i class="fa fa-file-video"></i>
+        Recording
+      </a>
+    {{ end }}
+  </div>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  {{ with (index $.Site.Data .Params.tweet_id) }}
+    <div>
+      {{ range .}}
+        <div class="tweet">
+          <a href="{{ .link }}" target="_blank">
+            <div>{{ .tweet | safeHTML }}</div>
+            <div class="tweet-images {{ if gt (len .photos) 1 }}tweet-image-grid{{end}}">
+              {{ range .photos }}
+                <img src="{{ . }}" />
+              {{ end }}
+            </div>
+            <div class="tweet-timestamp">{{ .created_at }}</div>
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+{{end }}

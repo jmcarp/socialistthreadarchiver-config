@@ -1,0 +1,16 @@
+baseURL = "/"
+relativeURLs = true
+languageCode = "en-us"
+title = "molly's civic threads"
+theme = "hyde"
+paginate = 10
+
+[params]
+  themeColor = "theme-base-0d"
+  customCSS = [
+    "css/custom.css",
+  ]
+
+[taxonomies]
+  group = 'groups'
+  meeting = 'meetings'
